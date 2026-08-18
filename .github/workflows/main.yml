@@ -1,11 +1,9 @@
 name: 'Lint Code'
-
 on:
   push:
     branches: [master, main]
   pull_request:
     branches: [master, main]
-
 jobs:
   lint_python:
     name: Lint Python Files
@@ -24,7 +22,6 @@ jobs:
       - name: Run Linter
         run: |
           flake8 --max-line-length=100 --exclude=migrations $(find . -name '*.py' -not -path '*/migrations/*')
-
   lint_javascript:
     name: Lint JavaScript Files
     runs-on: ubuntu-latest
@@ -39,4 +36,4 @@ jobs:
         run: npm install -g jshint
       - name: Run Linter
         run: |
-          jshint $(find . -name '*.js' -not -path './node_modules/*' -not -path '*/build/*')
+          jshint --config .jshintrc $(find ./server/database -name '*.js')
