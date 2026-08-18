@@ -23,7 +23,7 @@ jobs:
           pip install flake8
       - name: Run Linter
         run: |
-          flake8 --max-line-length=100 $(find . -name '*.py')
+          flake8 --max-line-length=100 --exclude=migrations $(find . -name '*.py' -not -path '*/migrations/*')
 
   lint_javascript:
     name: Lint JavaScript Files
